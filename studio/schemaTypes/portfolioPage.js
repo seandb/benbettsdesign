@@ -45,12 +45,13 @@ export default {
         type: 'object',
         fields: [
           { name: 'label', title: 'Label', type: 'string' },
+          { name: 'thumbnail', title: 'Thumbnail (optional screenshot)', type: 'image', options: { hotspot: true } },
           { name: 'code', title: 'Embed Code (HTML)', type: 'text' },
           { name: 'width', title: 'Width (px)', type: 'number' },
           { name: 'height', title: 'Height (px)', type: 'number' },
         ],
         preview: {
-          select: { title: 'label' },
+          select: { title: 'label', media: 'thumbnail' },
         }
       }]
     },

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Layout from "../components/Layout";
 import Slideshow from "../components/Slideshow";
 import { client, urlFor } from "../lib/sanity";
@@ -5,6 +6,16 @@ import { client, urlFor } from "../lib/sanity";
 export async function getStaticProps() {
   const page = await client.fetch(`*[_type == "portfolioPage" && slug.current == "digital"][0]`);
   return { props: { page: page || null }, revalidate: 30 };
+}
+
+function EmbedAd({ code, width, height }: { code: string; width: number; height: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.innerHTML = code;
+    }
+  }, [code]);
+  return <div ref={ref} style={{ width, height, overflow: "hidden" }} />;
 }
 
 export default function Digital({ page }: { page: any }) {
@@ -35,9 +46,7 @@ export default function Digital({ page }: { page: any }) {
             </h3>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center", marginBottom: "40px" }}>
               {page.embeds.map((embed: any) => (
-                <div key={embed._key} style={{ width: embed.width || 300, height: embed.height || 250, overflow: "hidden" }}>
-                  <div dangerouslySetInnerHTML={{ __html: embed.code }} />
-                </div>
+                <EmbedAd key={embed._key} code={embed.code} width={embed.width || 300} height={embed.height || 250} />
               ))}
             </div>
           </>
