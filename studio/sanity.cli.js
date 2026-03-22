@@ -1,15 +1,9 @@
-import {defineCliConfig} from 'sanity/cli'
+'use strict'
 
-export default defineCliConfig({
+module.exports = {
   api: {
     projectId: '3ta2u9fb',
     dataset: 'production'
   },
-  deployment: {
-    /**
-     * Enable auto-updates for studios.
-     * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56
-     */
-    autoUpdates: true,
-  }
-})
+  studioHost: 'benbettsdesign'
+}
