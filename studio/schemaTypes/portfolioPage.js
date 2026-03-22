@@ -36,5 +36,23 @@ export default {
         }
       }]
     },
+    {
+      name: 'embeds',
+      title: 'Embedded Ads',
+      description: 'HTML embed codes for animated banner ads (iframes, scripts, etc.)',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'label', title: 'Label', type: 'string' },
+          { name: 'code', title: 'Embed Code (HTML)', type: 'text' },
+          { name: 'width', title: 'Width (px)', type: 'number' },
+          { name: 'height', title: 'Height (px)', type: 'number' },
+        ],
+        preview: {
+          select: { title: 'label' },
+        }
+      }]
+    },
   ],
 }

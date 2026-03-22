@@ -28,6 +28,20 @@ export default function Digital({ page }: { page: any }) {
           Home Page Take over Ads
         </h3>
         <Slideshow images={images} />
+        {page.embeds && page.embeds.length > 0 && (
+          <>
+            <h3 style={{ textAlign: "center", fontFamily: "'Montserrat',sans-serif", fontSize: "18px", margin: "40px 0 20px", color: "#3e3e3e" }}>
+              300x250 Display Ads
+            </h3>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center", marginBottom: "40px" }}>
+              {page.embeds.map((embed: any) => (
+                <div key={embed._key} style={{ width: embed.width || 300, height: embed.height || 250, overflow: "hidden" }}>
+                  <div dangerouslySetInnerHTML={{ __html: embed.code }} />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </section>
     </Layout>
   );
