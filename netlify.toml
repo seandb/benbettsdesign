@@ -1,9 +1,3 @@
-[build]
-  command = "next build"
-  publish = ".next"
-
-[build.environment]
-  NODE_VERSION = "20"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# This site is now hosted on Vercel (vercel.com)
+# Vercel auto-detects Next.js — no config file needed.
+# This file is kept as a placeholder only.

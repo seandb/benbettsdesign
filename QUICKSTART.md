@@ -6,7 +6,7 @@ A reference for everything that had to be done manually to set this up, so it's 
 
 ## What This Is
 
-- **Site:** Next.js portfolio, deployed on Netlify → `benbettsdesign.netlify.app`
+- **Site:** Next.js portfolio, deployed on Vercel → `benbettsdesign.vercel.app`
 - **CMS:** Sanity Studio v5 → `benbettsdesign.sanity.studio`
 - **Repo:** `github.com/seandb/benbettsdesign`
 - **Sanity project ID:** `3ta2u9fb` · dataset: `production`
@@ -47,30 +47,24 @@ SANITY_AUTH_TOKEN="<your token>" npx sanity deploy --yes
 
 ---
 
-## Netlify
+## Vercel
 
-### Build settings (critical)
-Go to **Site configuration → Build & deploy → Build settings → Configure**
+### Deploy
+1. Go to [vercel.com](https://vercel.com) → **Add New Project** → Import `seandb/benbettsdesign`
+2. Vercel auto-detects Next.js — no build settings needed
+3. Hit **Deploy**
 
-| Setting | Value |
-|---|---|
-| Build command | `next build` |
-| Publish directory | `.next` |
-| Node version | `20` |
-
-> The build command must be **only** `next build`. The old TinaCMS command (`npx tinacms build && next build`) will break the build.
-
-### Auto-deploy webhook (Sanity → Netlify)
+### Auto-deploy webhook (Sanity → Vercel)
 
 So the site rebuilds automatically when content is published in Sanity:
 
-**Step 1 — Create a Netlify build hook:**
-- Netlify → Site configuration → Build & deploy → **Build hooks** → Add build hook
-- Name it `Sanity publish`, copy the URL
+**Step 1 — Create a Vercel deploy hook:**
+- Vercel → Project → Settings → **Git** → **Deploy Hooks** → Add
+- Name it `Sanity publish`, branch `main`, copy the URL
 
 **Step 2 — Create a Sanity webhook:**
 - [manage.sanity.io](https://manage.sanity.io) → your project → **API** → **Webhooks** → Create webhook
-- URL: paste the Netlify build hook URL
+- URL: paste the Vercel deploy hook URL
 - Trigger on: **Create**, **Update**, **Delete** (all three checked)
 - Dataset: `production`
 - Enable webhook: on
@@ -123,8 +117,8 @@ npx sanity dev     # → http://localhost:3333
 
 | | URL |
 |---|---|
-| Live site | https://benbettsdesign.netlify.app |
+| Live site | https://benbettsdesign.vercel.app |
 | Sanity Studio | https://benbettsdesign.sanity.studio |
 | Sanity project | https://manage.sanity.io |
-| Netlify dashboard | https://app.netlify.com |
+| Vercel dashboard | https://vercel.com |
 | GitHub repo | https://github.com/seandb/benbettsdesign |
