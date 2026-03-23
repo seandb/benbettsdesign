@@ -139,7 +139,9 @@ const projects = [
 function downloadBuffer(url) {
   return new Promise((resolve, reject) => {
     const mod = url.startsWith('https') ? https : http;
-    mod.get(url, (res) => {
+    const options = new URL(url);
+    options.headers = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' };
+    mod.get(options, (res) => {
       if (res.statusCode === 301 || res.statusCode === 302) {
         return downloadBuffer(res.headers.location).then(resolve).catch(reject);
       }
