@@ -5,5 +5,8 @@ module.exports = {
     projectId: '3ta2u9fb',
     dataset: 'production'
   },
-  studioHost: 'benbettsdesign'
+  studioHost: 'benbettsdesign',
+  deployment: {
+    appId: 'kjsizmpuamtd0vwwx9binpez',
+  }
 }

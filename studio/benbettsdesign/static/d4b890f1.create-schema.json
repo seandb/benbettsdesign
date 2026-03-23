@@ -1,0 +1,254 @@
+[
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "name": "heroHeading",
+        "type": "string"
+      },
+      {
+        "name": "heroSubtitle",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "bannerImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "href",
+                "type": "string",
+                "title": "Link URL"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "portfolioItems",
+        "type": "array"
+      }
+    ],
+    "name": "homePage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "photo",
+        "type": "image",
+        "title": "Profile Photo"
+      },
+      {
+        "of": [
+          {
+            "type": "text"
+          }
+        ],
+        "name": "bio",
+        "type": "array",
+        "title": "Bio Paragraphs"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "resumeImage",
+        "type": "image"
+      },
+      {
+        "name": "resumePdf",
+        "type": "file",
+        "title": "Resume PDF"
+      }
+    ],
+    "name": "aboutPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "name": "phone",
+        "type": "string"
+      }
+    ],
+    "name": "contactPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "bannerTitle",
+        "type": "string"
+      },
+      {
+        "name": "bannerSubtitle",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "bannerImage",
+        "type": "image"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "headerImage",
+        "type": "image"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Slideshow",
+              "value": "slideshow"
+            },
+            {
+              "title": "Grid (3 columns)",
+              "value": "grid3"
+            },
+            {
+              "title": "Grid (2 columns)",
+              "value": "grid2"
+            }
+          ]
+        },
+        "name": "displayType",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "images",
+        "type": "array",
+        "title": "Gallery Images"
+      },
+      {
+        "description": "HTML embed codes for animated banner ads (iframes, scripts, etc.)",
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "thumbnail",
+                "type": "image",
+                "title": "Thumbnail (optional screenshot)"
+              },
+              {
+                "name": "code",
+                "type": "text",
+                "title": "Embed Code (HTML)"
+              },
+              {
+                "name": "width",
+                "type": "number",
+                "title": "Width (px)"
+              },
+              {
+                "name": "height",
+                "type": "number",
+                "title": "Height (px)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "embeds",
+        "type": "array",
+        "title": "Embedded Ads"
+      }
+    ],
+    "name": "portfolioPage",
+    "type": "document"
+  }
+]

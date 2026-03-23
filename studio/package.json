@@ -2,7 +2,7 @@
   "name": "studio",
   "version": "1.0.0",
   "private": true,
-"scripts": {
+  "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@sanity/vision": "^3.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sanity": "^3.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^5.17.1",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
