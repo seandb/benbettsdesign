@@ -33,7 +33,7 @@ export default function Layout({ title = "Ben Betts Design", children }: LayoutP
       <header className="site-header">
         <Link href="/" className="site-logo">
           <img
-            src="https://www.benbettsdesign.com/uploads/1/3/2/1/132156171/published/ben-betts-design-mrs-eves-4x.png"
+            src="/logo.png"
             alt="Ben Betts Design"
           />
         </Link>
