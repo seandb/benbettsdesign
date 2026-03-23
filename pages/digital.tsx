@@ -11,9 +11,24 @@ export async function getStaticProps() {
 function EmbedAd({ code, width, height }: { code: string; width: number; height: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (ref.current) {
-      ref.current.innerHTML = code;
-    }
+    if (!ref.current) return;
+    const container = ref.current;
+    container.innerHTML = "";
+    const temp = document.createElement("div");
+    temp.innerHTML = code;
+    // Re-create script elements so they actually execute
+    Array.from(temp.childNodes).forEach((node) => {
+      if (node.nodeName === "SCRIPT") {
+        const s = node as HTMLScriptElement;
+        const script = document.createElement("script");
+        script.type = s.type || "text/javascript";
+        if (s.src) script.src = s.src;
+        else script.textContent = s.textContent;
+        container.appendChild(script);
+      } else {
+        container.appendChild(node.cloneNode(true));
+      }
+    });
   }, [code]);
   return <div ref={ref} style={{ width, height, overflow: "hidden" }} />;
 }
