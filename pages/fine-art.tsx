@@ -18,6 +18,7 @@ export default function FineArt({ page }: { page: any }) {
     <Layout title={page.title || "Fine Art - Ben Betts Design"}>
       <section className="page-banner" style={{ backgroundImage: page.bannerImage ? `url(${urlFor(page.bannerImage).width(1600).url()})` : undefined }} />
       <section className="content-section">
+        {page.headerImage && <img src={urlFor(page.headerImage).width(1200).url()} alt="Fine Art" className="page-header-img" />}
         <ImageGallery images={images} columns="2" />
       </section>
     </Layout>
