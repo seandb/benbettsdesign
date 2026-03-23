@@ -13,14 +13,10 @@ export default function Packaging({ page, projects }: { page: any; projects: any
     <Layout title={page?.title || "Packaging - Ben Betts Design"}>
       {page?.bannerImage && (
         <section className="page-banner" style={{ backgroundImage: `url(${urlFor(page.bannerImage).width(1600).url()})` }}>
-          <div className="hero-content">
-            <h2>{page.bannerTitle}</h2>
-            {page.bannerSubtitle && <p className="banner-subtitle">{page.bannerSubtitle}</p>}
-          </div>
+          {page?.headerImage && <img src={urlFor(page.headerImage).width(600).url()} alt="" className="page-header-img" />}
         </section>
       )}
       <section className="content-section">
-        {page?.headerImage && <img src={urlFor(page.headerImage).width(1200).url()} alt="" className="page-header-img" />}
         <div className="portfolio-grid">
           {projects.map((project: any) => (
             <Link key={project._id} href={`/project/${project.slug.current}`} className="portfolio-item">

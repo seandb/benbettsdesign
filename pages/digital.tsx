@@ -43,12 +43,9 @@ export default function Digital({ page }: { page: any }) {
   return (
     <Layout title={page.title || "Digital - Ben Betts Design"}>
       <section className="page-banner" style={{ backgroundImage: page.bannerImage ? `url(${urlFor(page.bannerImage).width(1600).url()})` : undefined }}>
-        <div className="hero-content">
-          <h2>{page.bannerTitle}</h2>
-        </div>
+        {page.headerImage && <img src={urlFor(page.headerImage).width(600).url()} alt="Digital" className="page-header-img" />}
       </section>
       <section className="content-section">
-        {page.headerImage && <img src={urlFor(page.headerImage).width(1200).url()} alt="Digital" className="page-header-img" />}
         <h2 className="section-title">Ads</h2>
         <h3 style={{ textAlign: "center", fontFamily: "'Montserrat',sans-serif", fontSize: "18px", marginBottom: "20px", color: "#3e3e3e" }}>
           Home Page Take over Ads
