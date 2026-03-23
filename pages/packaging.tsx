@@ -1,30 +1,36 @@
+import Link from "next/link";
 import Layout from "../components/Layout";
-import ImageGallery from "../components/ImageGallery";
 import { client, urlFor } from "../lib/sanity";
 
 export async function getStaticProps() {
   const page = await client.fetch(`*[_type == "portfolioPage" && slug.current == "packaging"][0]`);
-  return { props: { page: page || null }, revalidate: 30 };
+  const projects = await client.fetch(`*[_type == "project" && parentPage == "packaging"] | order(_createdAt asc)`);
+  return { props: { page: page || null, projects: projects || [] }, revalidate: 30 };
 }
 
-export default function Packaging({ page }: { page: any }) {
-  if (!page) return <Layout title="Packaging"><div /></Layout>;
-  const images = (page.images || []).map((img: any) => ({
-    src: urlFor(img.image).width(1200).url(),
-    alt: img.alt || "",
-  }));
-
+export default function Packaging({ page, projects }: { page: any; projects: any[] }) {
   return (
-    <Layout title={page.title || "Packaging - Ben Betts Design"}>
-      <section className="page-banner" style={{ backgroundImage: page.bannerImage ? `url(${urlFor(page.bannerImage).width(1600).url()})` : undefined }}>
-        <div className="hero-content">
-          <h2>{page.bannerTitle}</h2>
-          {page.bannerSubtitle && <p className="banner-subtitle">{page.bannerSubtitle}</p>}
-        </div>
-      </section>
+    <Layout title={page?.title || "Packaging - Ben Betts Design"}>
+      {page?.bannerImage && (
+        <section className="page-banner" style={{ backgroundImage: `url(${urlFor(page.bannerImage).width(1600).url()})` }}>
+          <div className="hero-content">
+            <h2>{page.bannerTitle}</h2>
+            {page.bannerSubtitle && <p className="banner-subtitle">{page.bannerSubtitle}</p>}
+          </div>
+        </section>
+      )}
       <section className="content-section">
-        {page.headerImage && <img src={urlFor(page.headerImage).width(1200).url()} alt="" className="page-header-img" />}
-        <ImageGallery images={images} columns="2" />
+        {page?.headerImage && <img src={urlFor(page.headerImage).width(1200).url()} alt="" className="page-header-img" />}
+        <div className="portfolio-grid">
+          {projects.map((project: any) => (
+            <Link key={project._id} href={`/project/${project.slug.current}`} className="portfolio-item">
+              {project.thumbnail && (
+                <img src={urlFor(project.thumbnail).width(600).url()} alt={project.title} />
+              )}
+              <div className="label">{project.title}</div>
+            </Link>
+          ))}
+        </div>
       </section>
     </Layout>
   );
